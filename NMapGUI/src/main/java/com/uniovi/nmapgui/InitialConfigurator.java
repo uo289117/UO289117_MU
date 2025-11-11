@@ -16,12 +16,12 @@ import com.uniovi.nmapgui.executor.CommandExecutorObserver;
 import com.uniovi.nmapgui.model.Command;
 import com.uniovi.nmapgui.model.Script;
 import com.uniovi.nmapgui.model.ScriptHelp;
-import com.uniovi.nmapgui.model.menu.Menu;
+import com.uniovi.nmapgui.model.menU.menU;
 
 public class InitialConfigurator implements CommandExecutorObserver{
 
 	private Map<String,List<Script>> scriptCategories = new HashMap<>();
-	private Menu menu;
+	private menU menU;
 	
 	public Map<String, List<Script>> getScriptCategories() {
 		return scriptCategories;
@@ -31,18 +31,18 @@ public class InitialConfigurator implements CommandExecutorObserver{
 		this.scriptCategories = scriptCategories;
 	}
 
-	public Menu getMenu() {
-		return menu;
+	public menU getmenU() {
+		return menU;
 	}
 
-	public void setMenu(Menu menu) {
-		this.menu = menu;
+	public void setmenU(menU menU) {
+		this.menU = menU;
 	}
 
 	public void configure(){
 		
 		try {
-			loadMenu();
+			loadmenU();
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,13 +53,13 @@ public class InitialConfigurator implements CommandExecutorObserver{
     	executor.execute();
 	}
 
-	private void loadMenu() throws JAXBException {
+	private void loadmenU() throws JAXBException {
 		InputStream xml = InitialConfigurator.class.getClassLoader()
-			.getResourceAsStream("menu.xml");
-		JAXBContext jaxbContext = JAXBContext.newInstance(Menu.class);
+			.getResourceAsStream("menU.xml");
+		JAXBContext jaxbContext = JAXBContext.newInstance(menU.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        Menu menu = (Menu)unmarshaller.unmarshal(xml);
-        this.setMenu(menu);
+        menU menU = (menU)unmarshaller.unmarshal(xml);
+        this.setmenU(menU);
        
 	
 	}
